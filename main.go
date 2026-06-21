@@ -58,7 +58,7 @@ func payHandler(w http.ResponseWriter, r *http.Request) {
 	payment.Println()
 
 	mtx.Lock()
-
+	defer mtx.Unlock()
 	if money-payment.USD >= 0 {
 		money -= payment.USD
 	}
@@ -83,7 +83,6 @@ func payHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	mtx.Unlock()
 }
 
 func main() {
